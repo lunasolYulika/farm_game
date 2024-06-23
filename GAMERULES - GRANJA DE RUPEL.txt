@@ -1,0 +1,4 @@
+MOVIMIENTOS
+- se considera movimiento moverse de un casillero a otro unicamente
+- Puede moverse sobre cualquier objeto
+
