@@ -186,10 +186,11 @@ def refresh_objects(juego):
     #LOAD RAND OBJECTS
     if cant_movimientos == RAND_MOV_PLAGA:
         load_objeto(juego,PLAGA)
-        mensaje = mensaje + f" Apareció una nueva plaga en el terreno"
+        mensaje += f" Apareció una nueva plaga en el terreno"
     if cant_movimientos == RAND_MOV_FERT:
         load_objeto(juego,FERTILIZANTE)
-        mensaje = mensaje + f" Apareció un fertilizante en el terreno"
+        if (len(mensaje)>0): mensaje += "\n";
+        mensaje += f" Apareció un fertilizante en el terreno"
     for huerta in juego.huertas:
         for c in huerta.cultivos:
             if c.tipo != VACIO:
@@ -197,7 +198,8 @@ def refresh_objects(juego):
                 mov_pasados = cant_movimientos - c.mov_plantado
                 mov_vida = semilla.vida - mov_pasados
                 if mov_vida < 1:
-                    mensaje = mensaje + f" Se pudrió 1 {get_nombre_planta(c.tipo).upper()}"
+                    if (len(mensaje)>0): mensaje += "\n";
+                    mensaje += f" Se pudrió 1 {get_nombre_planta(c.tipo).upper()}"
                     c.tipo = VACIO
     if mensaje:
         return get_center_text(mensaje)

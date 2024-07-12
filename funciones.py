@@ -9,6 +9,8 @@ def cargar_tamaño_terreno():
     while True:
         try:
             size = int(input("Ingrese el tamaño de la matriz: "))
+            while size not in range(8,16):
+                size = int(input("TAMAÑO FUERA DE RANGO\nIngrese el tamaño de la matriz (8 a 15): "))
             return size
         except ValueError:
             print("Error en input")
@@ -44,7 +46,8 @@ def get_info_planta(cultivo, mov_juego):
         
     if mov_cosecha < 0:
         mov_cosecha = 0
-    info = f"Info {info}: Plantado mov nro.: {cultivo.mov_plantado} - Cosecha: {mov_cosecha}/{semilla.cosecha_mov} - Vida: {mov_vida}/{semilla.vida} movimientos"
+    if (mov_cosecha == 0): info = f"Info {info}: LISTO PARA COSECHA! -> Plantado mov nro.: {cultivo.mov_plantado} - Cosecha: {mov_cosecha}/{semilla.cosecha_mov} - Vida: {mov_vida}/{semilla.vida} movimientos"
+    else: info = f"Info {info}: Plantado mov nro.: {cultivo.mov_plantado} - Cosecha: {mov_cosecha}/{semilla.cosecha_mov} - Vida: {mov_vida}/{semilla.vida} movimientos"
     return get_center_text(info)
     
 def plantar(juego,cultivo):
@@ -94,7 +97,7 @@ def menu_huerta(cultivo):
         print_empty_bar()
         while accion not in MOVIMIENTOS and accion not in [FERTILIZANTE,PLANTAR,INSECTICIDA]:
             print_bar()
-            accion = input(f"\tInválido\n {msj_mov_terreno_huerta+msj_cultivo_vacio}").upper()
+            accion = input(f"\tINVÁLIDO\n {msj_mov_terreno_huerta+msj_cultivo_vacio}").upper()
     else:
         accion = input(msj_mov_terreno_huerta + msj_cultivo_plantado).upper() 
         print_empty_bar()
