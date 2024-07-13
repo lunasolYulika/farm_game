@@ -2,14 +2,16 @@ from funciones import *#NOQA
 from format_resources import *#NOQA
 from constants import * #NOQA
 import os #NOQA
-
-#CONSTANTES
+###
+###CONSTANTES
 CANT_COIN_WIN = 30
 RAND_MOV_PLAGA = 4
 RAND_MOV_FERT = 2
 
 def clear_screen_windows():
     os.system('cls')
+
+###CLASES
 class Coordenada:
     def __init__(self,fila=-1,columna=-1):
         self.fila = fila
@@ -130,7 +132,8 @@ class Juego:
         #return f"{title_game+subtitle_game+player_data+gardens_data+objects_title+objects_data}"
         #return f"{title_game+subtitlegame+player_data+objects_title+objects_data}"
         return f"{line+empty_line+title_game+empty_line+subtitle_game+objects_data+player_data+objects_data}\n{empty_line}\n"
-
+###
+### INICIO y JUEGO
 def print_matriz(matriz):
     tab = 3
     print_empty_bar()
@@ -327,4 +330,5 @@ def inicializar_juego(juego):
     juego.deposito = coord_deposito
     #TEST
     juego.print_screen_game()
+###
         
